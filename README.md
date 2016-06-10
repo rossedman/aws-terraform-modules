@@ -1,2 +1,2 @@
 # aws-terraform-modules
-A bunch of modules I have found helpful for building Terraform stacks.
+This is still a work in progress. There will be lots of changes!
