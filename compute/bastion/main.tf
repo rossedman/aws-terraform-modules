@@ -1,4 +1,4 @@
-wvariable "allowed_to_ssh" {}
+variable "allowed_to_ssh" {}
 variable "ami" {}
 variable "amount" {default = "1"}
 variable "app_name" {}
