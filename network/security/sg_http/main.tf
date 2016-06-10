@@ -5,7 +5,7 @@ variable "vpc_id" {}
 variable "incoming_cidr" {default = "0.0.0.0/0"}
 variable "outgoing_cidr" {default = "0.0.0.0/0"}
 variable "app_name" {default = ""}
-variable "env" {default = ""}
+variable "environment" {default = ""}
 
 /*--------------------------------------------------
  * Security Group
