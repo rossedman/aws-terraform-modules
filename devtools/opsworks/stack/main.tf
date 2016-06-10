@@ -4,7 +4,7 @@
 variable "agent_version" {default = "LATEST"}
 variable "cookbook_bucket" {}
 variable "chef_version" {default = "12"}
-variable "defaut_os" {default = "Amazon Linux 2016.03"}
+variable "default_os" {default = "Amazon Linux 2016.03"}
 variable "default_subnet_id" {}
 variable "default_ssh_key_name" {}
 variable "use_opsworks_sgs" {default = false}
