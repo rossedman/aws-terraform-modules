@@ -75,5 +75,5 @@ variable "vpc_id" {}
  * Outputs
  *-------------------------------------------------*/
 output "id" {
-  value = "${aws_opsworks_stack.id}"
+  value = "${aws_opsworks_stack.main.id}"
 }
