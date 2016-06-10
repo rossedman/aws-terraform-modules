@@ -1,4 +1,4 @@
-variable "allowed_to_ssh" {}
+wvariable "allowed_to_ssh" {}
 variable "ami" {}
 variable "amount" {default = "1"}
 variable "app_name" {}
@@ -36,12 +36,12 @@ resource "aws_security_group" "bastion" {
     cidr_blocks = ["${split(",", var.allowed_to_ssh)}"]
   }
 
-  ingress {
+  /*ingress {
     from_port = 0
     to_port = 0
     protocol = "-1"
     cidr_blocks = ["${var.vpc_cidr}"]
-  }
+  }*/
 
   egress {
     from_port = 0

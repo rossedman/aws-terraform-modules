@@ -1,3 +1,31 @@
+/*--------------------------------------------------
+ * Variables
+ *-------------------------------------------------*/
+variable "azs" {}
+variable "app_name" {}
+variable "environment" {}
+variable "public_subnets" {default = ""}
+variable "private_subnets" {default = ""}
+variable "internal_domain" {}
+variable "cidr" {}
+
+/*--------------------------------------------------
+ * VPC & Internet Gateway
+ *-------------------------------------------------*/
+module "vpc" {
+  source = "./vpc"
+  cidr = "${var.cidr}"
+  app_name = "${var.app_name}"
+  environment = "${var.environment}"
+}
+
+/*--------------------------------------------------
+ * Internal DNS
+ *-------------------------------------------------*/
+resource "aws_route53_zone" "private" {
+  name = "${var.internal_domain}"
+  vpc_id = "${module.vpc.id}"
+}
 
 /*--------------------------------------------------
  * Subnets
@@ -8,7 +36,6 @@ module "subnets_public" {
   cidrs = "${var.public_subnets}"
   vpc_id = "${module.vpc.id}"
   public = true
-
   app_name = "${var.app_name}"
   environment = "${var.environment}"
 }
@@ -19,7 +46,6 @@ module "subnets_private" {
   cidrs = "${var.private_subnets}"
   vpc_id = "${module.vpc.id}"
   public = false
-
   app_name = "${var.app_name}"
   environment = "${var.environment}"
 }
@@ -78,3 +104,15 @@ resource "aws_route_table_association" "public" {
   subnet_id = "${element(split(",", module.subnets_public.ids), count.index)}"
   route_table_id = "${aws_route_table.public.id}"
 }
+
+/*--------------------------------------------------
+ * Outputs
+ *-------------------------------------------------*/
+output "public_ids" {value = "${module.subnets_public.ids}"}
+output "private_ids" {value = "${module.subnets_private.ids}"}
+output "dns_zone" {value = "${aws_route53_zone.private.zone_id}"}
+output "vpc_id" {value = "${module.vpc.id}"}
+output "vpc_cidr" {value = "${module.vpc.cidr}"}
+output "vpc_sg" {value = "${module.vpc.sg_id}"}
+output "vpc_nacl_id" {value = "${module.vpc.nacl_id}"}
+output "vpc_gateway_id" {value = "${module.vpc.gateway_id}"}
