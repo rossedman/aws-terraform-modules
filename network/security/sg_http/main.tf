@@ -47,5 +47,5 @@ resource "aws_security_group" "web" {
  * Output
  *-------------------------------------------------*/
 output "id" {
-  value = "${aws_security_group.http.id}"
+  value = "${aws_security_group.web.id}"
 }
