@@ -10,7 +10,7 @@ variable "environment" {default = ""}
 /*--------------------------------------------------
  * Security Group
  *-------------------------------------------------*/
-resource "aws_security_group" "http" {
+resource "aws_security_group" "web" {
   name = "web"
   description = "Security group for HTTP/HTTPS web traffic"
   vpc_id = "${var.vpc_id}"
