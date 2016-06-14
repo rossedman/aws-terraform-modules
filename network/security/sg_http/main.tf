@@ -6,12 +6,13 @@ variable "incoming_cidr" {default = "0.0.0.0/0"}
 variable "outgoing_cidr" {default = "0.0.0.0/0"}
 variable "app_name" {default = ""}
 variable "environment" {default = ""}
+variable "name" {}
 
 /*--------------------------------------------------
  * Security Group
  *-------------------------------------------------*/
 resource "aws_security_group" "web" {
-  name = "web"
+  name = "${var.name}"
   description = "Security group for HTTP/HTTPS web traffic"
   vpc_id = "${var.vpc_id}"
 
