@@ -1,11 +1,11 @@
 {
-  "Version": "2008-10-17",
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Sid": "",
       "Effect": "Allow",
       "Principal": {
-        "Service": "opsworks.amazonaws.com"
+        "Service": "vpc-flow-logs.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
     }
