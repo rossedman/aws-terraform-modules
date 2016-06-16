@@ -40,5 +40,5 @@ resource "aws_security_group" "elastic" {
  * Output
  *-------------------------------------------------*/
 output "id" {
-  value = "${aws_security_group.web.id}"
+  value = "${aws_security_group.elastic.id}"
 }
