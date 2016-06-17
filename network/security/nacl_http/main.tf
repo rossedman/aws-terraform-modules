@@ -39,7 +39,7 @@ resource "aws_network_acl" "http" {
     protocol = "tcp"
     rule_no = 400
     action = "allow"
-    cidr_block = "0.0.0."
+    cidr_block = "${var.http_cidr_block}"
     from_port = 1024
     to_port = 65535
   }
