@@ -48,12 +48,12 @@ resource "aws_network_acl" "http" {
   }
 
   egress {
-    protocol = "tcp"
+    protocol = -1
     rule_no = 100
     action = "allow"
     cidr_block = "${var.egress_cidr_block}"
-    from_port = 1
-    to_port = 65535
+    from_port = 0
+    to_port = 0
   }
 
   tags {
