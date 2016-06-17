@@ -3,10 +3,12 @@ variable "app_name" {}
 variable "environment" {}
 variable "http_cidr_block" {default = "0.0.0.0/0"}
 variable "ssh_cidr_block" {default = "0.0.0.0/0"}
+variable "subnet_ids" {}
 variable "vpc_id" {}
 
 resource "aws_network_acl" "http" {
   vpc_id = "${var.vpc_id}"
+  subnet_ids = "${split(",", var.subnet_ids)}"
 
   ingress {
     protocol = "tcp"
