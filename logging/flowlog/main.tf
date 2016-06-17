@@ -6,7 +6,7 @@ variable "traffic_type" {default = "ALL"}
 
 resource "aws_flow_log" "log" {
   log_group_name = "${var.name}"
-  iam_role_arn = "${aws_iam_role.test_role.arn}"
+  iam_role_arn = "${aws_iam_role.flowlog_role.arn}"
   vpc_id = "${var.vpc_id}"
   traffic_type = "${var.traffic_type}"
 }
@@ -18,7 +18,7 @@ resource "aws_iam_role" "flowlog_role" {
 
 resource "aws_iam_role_policy" "flowlog_policy" {
   name = "flowlog_policy"
-  role = "${aws_iam_role.test_role.id}"
+  role = "${aws_iam_role.flowlog_role.id}"
   policy = "${file("./flowlog-policy.json")}"
 }
 
