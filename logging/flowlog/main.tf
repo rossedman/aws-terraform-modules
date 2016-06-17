@@ -23,5 +23,5 @@ resource "aws_iam_role_policy" "flowlog_policy" {
 }
 
 output "id" {
-  value = "${aws_flow_log.log}"
+  value = "${aws_flow_log.log.id}"
 }
