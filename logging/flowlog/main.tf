@@ -13,13 +13,13 @@ resource "aws_flow_log" "log" {
 
 resource "aws_iam_role" "flowlog_role" {
   name = "flowlog_role"
-  assume_role_policy = "${file("./flowlog-role.json")}"
+  assume_role_policy = "${file("${path.module}/flowlog-role.json")}"
 }
 
 resource "aws_iam_role_policy" "flowlog_policy" {
   name = "flowlog_policy"
   role = "${aws_iam_role.flowlog_role.id}"
-  policy = "${file("./flowlog-policy.json")}"
+  policy = "${file("${path.module}/flowlog-policy.json")}"
 }
 
 output "id" {
