@@ -8,7 +8,7 @@ variable "vpc_id" {}
 
 resource "aws_network_acl" "http" {
   vpc_id = "${var.vpc_id}"
-  subnet_ids = "${split(",", var.subnet_ids)}"
+  subnet_ids = ["${split(",", var.subnet_ids)}"]
 
   ingress {
     protocol = "tcp"
