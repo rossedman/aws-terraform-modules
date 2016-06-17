@@ -1,7 +1,7 @@
 variable "name" {default = "http-nacl"}
 variable "app_name" {}
 variable "environment" {}
-variable "egress_cidr" {default = "0.0.0.0/0"}
+variable "egress_cidr_block" {default = "0.0.0.0/0"}
 variable "http_cidr_block" {default = "0.0.0.0/0"}
 variable "ssh_cidr_block" {default = "0.0.0.0/0"}
 variable "subnet_ids" {}
@@ -51,35 +51,8 @@ resource "aws_network_acl" "http" {
     protocol = "tcp"
     rule_no = 100
     action = "allow"
-    cidr_block = "${var.egress_cidr}"
-    from_port = 80
-    to_port = 80
-  }
-
-  egress {
-    protocol = "tcp"
-    rule_no = 200
-    action = "allow"
-    cidr_block = "${var.egress_cidr}"
-    from_port = 443
-    to_port = 443
-  }
-
-  egress {
-    protocol = "tcp"
-    rule_no = 300
-    action = "allow"
-    cidr_block = "${var.egress_cidr}"
-    from_port = 22
-    to_port = 22
-  }
-
-  egress {
-    protocol = "tcp"
-    rule_no = 400
-    action = "allow"
-    cidr_block = "${var.egress_cidr}"
-    from_port = 1024
+    cidr_block = "${var.egress_cidr_block}"
+    from_port = 1
     to_port = 65535
   }
 
