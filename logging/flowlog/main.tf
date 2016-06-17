@@ -1,6 +1,8 @@
 variable "name" {}
-variable "vpc_id" {}
-variable "traffic_type" {default = "REJECT"}
+variable "eni_id" {default = ""}
+variable "subnet_id" {default = ""}
+variable "vpc_id" {default = ""}
+variable "traffic_type" {default = "ALL"}
 
 resource "aws_flow_log" "log" {
   log_group_name = "${var.name}"
